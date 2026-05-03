@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ceoetylu2k2k0"]
+
+[ext_resource type="FontFile" uid="uid://dcexb0yuaxmb" path="res://Fonts/Heading Font Main Menu/Doctor Glitch.otf" id="1_wyqrx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_234o8"]
+font = ExtResource("1_wyqrx")
+font_size = 120
+font_color = Color(0.8131019, 0.31714797, 0.83911324, 1)
+
+[sub_resource type="Environment" id="Environment_wyqrx"]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_intensity = 1.25
+glow_strength = 1.54
+
+[node name="Main Menu Title" type="Label" unique_id=653418632]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "WAY TO HOME"
+label_settings = SubResource("LabelSettings_234o8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=364681379]
+environment = SubResource("Environment_wyqrx")

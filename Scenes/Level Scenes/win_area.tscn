@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://csg4ngjkvrcpq"]
+
+[ext_resource type="Script" uid="uid://hjpqo6fh7xe0" path="res://Scripts/Game Scripts/win_area.gd" id="1_0pbqt"]
+[ext_resource type="Texture2D" uid="uid://c457r2yjw1fr4" path="res://Sprites/bacgrkound.png" id="1_4kavi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcryd"]
+
+[node name="Win Area" type="Area2D" unique_id=34974328]
+script = ExtResource("1_0pbqt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=655369643]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-3.5762787e-07, -9.536743e-07)
+scale = Vector2(0.03, 0.054)
+texture = ExtResource("1_4kavi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1102562720]
+scale = Vector2(2.5, 2.5)
+shape = SubResource("RectangleShape2D_qcryd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

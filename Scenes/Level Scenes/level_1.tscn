@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://bpav8ryudn5hb"]
+
+[ext_resource type="Texture2D" uid="uid://c457r2yjw1fr4" path="res://Sprites/bacgrkound.png" id="1_3hls8"]
+[ext_resource type="Script" uid="uid://2agjdjxd42al" path="res://Scripts/Game Scripts/level_1.gd" id="1_ihfcg"]
+[ext_resource type="PackedScene" uid="uid://p3ifybcspv4k" path="res://Scenes/Level Scenes/player.tscn" id="2_hbghi"]
+[ext_resource type="FontFile" uid="uid://brir2jta8r0j4" path="res://Fonts/In-Game Font/04B_30__.TTF" id="2_idn0c"]
+[ext_resource type="PackedScene" uid="uid://3wu2pngeoobt" path="res://Scenes/Level Scenes/maze.tscn" id="4_ihfcg"]
+[ext_resource type="Shader" uid="uid://c7hodjvik4i4c" path="res://Scripts/Shaders/Fog_shader.gdshader" id="5_idn0c"]
+[ext_resource type="PackedScene" uid="uid://csg4ngjkvrcpq" path="res://Scenes/Level Scenes/win_area.tscn" id="7_jhu26"]
+[ext_resource type="AudioStream" uid="uid://cagkb35xrlgs3" path="res://Musics/Game Background Music.mp3" id="8_w04je"]
+[ext_resource type="FontFile" uid="uid://bvgvtlp6qj1c2" path="res://Fonts/Timer Font/SuperAdorable-MAvyp.ttf" id="9_7jdm3"]
+[ext_resource type="FontFile" uid="uid://bruifko8g2kpc" path="res://Fonts/End Guide Font/MotleyForcesRegular-w1rZ3.ttf" id="10_pc6fx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_idn0c"]
+font = ExtResource("2_idn0c")
+font_color = Color(1, 1, 0.19215687, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w04je"]
+font = ExtResource("2_idn0c")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_jhu26"]
+font = ExtResource("2_idn0c")
+font_size = 25
+font_color = Color(0.827451, 0, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gw0am"]
+font = ExtResource("10_pc6fx")
+font_size = 30
+font_color = Color(0, 0.7921569, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jhu26"]
+shader = ExtResource("5_idn0c")
+shader_parameter/speed = 0.2
+shader_parameter/density = 0.6
+shader_parameter/scale = 2.0
+shader_parameter/fog_color = Color(0.75, 0.8, 0.85, 0.6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7jdm3"]
+font = ExtResource("9_7jdm3")
+font_size = 60
+font_color = Color(0.57254905, 0.42745098, 0.8627451, 1)
+
+[node name="Level 1" type="Node2D" unique_id=479324920]
+script = ExtResource("1_ihfcg")
+
+[node name="Graphics" type="Node" parent="." unique_id=245597547]
+
+[node name="Start" type="Label" parent="Graphics" unique_id=2027308924]
+z_index = -2
+texture_filter = 1
+offset_left = -315.0
+offset_top = -176.0
+offset_right = -218.0
+offset_bottom = -153.0
+text = "🚩START"
+label_settings = SubResource("LabelSettings_idn0c")
+
+[node name="End" type="Label" parent="Graphics" unique_id=322019196]
+z_index = -2
+texture_filter = 1
+offset_left = 6921.0
+offset_top = -5813.0
+offset_right = 7047.0
+offset_bottom = -5779.0
+text = "🏁END"
+label_settings = SubResource("LabelSettings_w04je")
+
+[node name="Rules" type="Label" parent="Graphics" unique_id=596847492]
+z_index = -2
+texture_filter = 1
+offset_left = -927.0
+offset_top = -176.0
+offset_right = -492.0
+offset_bottom = 94.0
+text = "RULES:
+
+- USE WASD OR ARROW KEYS TO MOVE.
+- TRY TO BE IN THE  WORMHOLE OR THE GAME WILL RESET!!
+"
+label_settings = SubResource("LabelSettings_jhu26")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="End Guide" type="Label" parent="Graphics" unique_id=1182514607]
+z_index = -2
+texture_filter = 1
+offset_left = 6888.0
+offset_top = -5638.0
+offset_right = 7239.0
+offset_bottom = -5585.0
+text = "ENTER IN THE BLACK AREA 
+TO EXIT THE WORMHOLE :D"
+label_settings = SubResource("LabelSettings_gw0am")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Maze" parent="Graphics" unique_id=1808858529 instance=ExtResource("4_ihfcg")]
+z_index = -5
+position = Vector2(1180, 679)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Graphics" unique_id=207576602]
+layer = -10
+
+[node name="Background" type="TextureRect" parent="Graphics/CanvasLayer" unique_id=436310276]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3hls8")
+stretch_mode = 4
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="Graphics" unique_id=1047043084]
+layer = -10
+
+[node name="Shader_Fog" type="ColorRect" parent="Graphics/CanvasLayer2" unique_id=1491887918]
+material = SubResource("ShaderMaterial_jhu26")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Win Area" parent="." unique_id=34974328 instance=ExtResource("7_jhu26")]
+position = Vector2(6979, -5715)
+scale = Vector2(2, 2)
+
+[node name="Player" parent="." unique_id=2114854665 instance=ExtResource("2_hbghi")]
+position = Vector2(-542, -160)
+
+[node name="Game Background Music" type="AudioStreamPlayer2D" parent="Player" unique_id=120505371]
+position = Vector2(310, 107)
+stream = ExtResource("8_w04je")
+volume_db = 10.0
+autoplay = true
+
+[node name="Timer" type="Timer" parent="." unique_id=23366676]
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="." unique_id=1031013098]
+
+[node name="Control" type="Control" parent="CanvasLayer3" unique_id=1145652622]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer Label" type="Label" parent="CanvasLayer3/Control" unique_id=19607410]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -61.0
+offset_bottom = 46.0
+grow_horizontal = 0
+text = "120"
+label_settings = SubResource("LabelSettings_7jdm3")
+
+[connection signal="body_entered" from="Graphics/Maze" to="." method="_on_maze_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

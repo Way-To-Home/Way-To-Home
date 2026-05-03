@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://gqluthuqtvmf"]
+
+[node name="Enemy" type="RigidBody2D" unique_id=1732104642]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1037381723]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1304774369]
+
+[node name="Timer" type="Timer" parent="." unique_id=712197482]
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=77741727]

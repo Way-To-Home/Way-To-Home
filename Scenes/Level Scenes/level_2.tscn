@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://dvpmrbk4lb3w4"]
+
+[ext_resource type="Script" uid="uid://d3a1in882t1er" path="res://Scripts/Game Scripts/level_2.gd" id="1_58reu"]
+[ext_resource type="PackedScene" uid="uid://p3ifybcspv4k" path="res://Scenes/Level Scenes/player.tscn" id="1_l2t6n"]
+[ext_resource type="Texture2D" uid="uid://71ujn5qlcadm" path="res://Sprites/level 2 background.jpg" id="1_n5pkn"]
+[ext_resource type="Script" uid="uid://djqxla6nyjqxx" path="res://Scripts/Game Scripts/meteor_spawner.gd" id="3_f6fat"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Sprites/icon.svg" id="4_btwsa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1wfm"]
+size = Vector2(115, 672)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58reu"]
+size = Vector2(115, 1158)
+
+[node name="Level 2" type="Node2D" unique_id=710676695]
+script = ExtResource("1_58reu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=315853020]
+layer = -2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1581331451]
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_n5pkn")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="Player" parent="." unique_id=1619163447 instance=ExtResource("1_l2t6n")]
+z_index = 1
+position = Vector2(553, 281)
+collision_layer = 2
+collision_mask = 5
+
+[node name="Muzzle" type="Node2D" parent="Player" unique_id=1286509173]
+position = Vector2(0, -20)
+
+[node name="ShootCoolDown" type="Timer" parent="Player" unique_id=1267960120]
+wait_time = 0.2
+one_shot = true
+
+[node name="MeteorSpawner" type="Node2D" parent="." unique_id=963704447]
+script = ExtResource("3_f6fat")
+
+[node name="Timer" type="Timer" parent="MeteorSpawner" unique_id=1716376290]
+autostart = true
+
+[node name="test" type="Sprite2D" parent="." unique_id=811342042]
+position = Vector2(732, 214)
+texture = ExtResource("4_btwsa")
+
+[node name="Walls" type="Node" parent="." unique_id=49979481]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls" unique_id=638945664]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D" unique_id=467285588]
+position = Vector2(-57, 331)
+shape = SubResource("RectangleShape2D_m1wfm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/StaticBody2D" unique_id=827340523]
+position = Vector2(1210, 320)
+shape = SubResource("RectangleShape2D_m1wfm")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls" unique_id=1212632284]
+position = Vector2(668, 759)
+rotation = 1.5707964
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2" unique_id=2079064520]
+position = Vector2(-57, 88.00006)
+shape = SubResource("RectangleShape2D_58reu")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls" unique_id=7027804]
+position = Vector2(668, 759)
+rotation = 1.5707964
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3" unique_id=1279633099]
+position = Vector2(-814, 92.00003)
+shape = SubResource("RectangleShape2D_58reu")
+
+[node name="Asteroids" type="Node" parent="." unique_id=2118910169]
+
+[node name="Lasers" type="Node" parent="." unique_id=821815588]
+
+[editable path="Player"]

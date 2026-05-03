@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://bdpvvcd0ilefa"]
+
+[ext_resource type="Script" uid="uid://cvqvp3be6mrx3" path="res://Scripts/UI Scripts/main_menu.gd" id="1_ioebn"]
+[ext_resource type="Texture2D" uid="uid://8wod6eb5ewgx" path="res://Sprites/Start Menu Background.jpg" id="2_pih3d"]
+[ext_resource type="FontFile" uid="uid://c0iautqw3ktpj" path="res://Fonts/Button Font Main Menu/Saddlebag.ttf" id="3_j51p1"]
+[ext_resource type="PackedScene" uid="uid://ceoetylu2k2k0" path="res://Scenes/UI Scenes/main_menu_title.tscn" id="4_pih3d"]
+[ext_resource type="AudioStream" uid="uid://ch27fl2v2j7j8" path="res://Musics/Main Menu Music.mp3" id="5_j51p1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pih3d"]
+texture = ExtResource("2_pih3d")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erv1k"]
+bg_color = Color(0.1066, 0.16284668, 0.26, 0.9019608)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce3w2"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ehe0"]
+bg_color = Color(0, 0.07333336, 0.2, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ehe0"]
+
+[node name="Main Menu" type="Control" unique_id=820779952]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ioebn")
+
+[node name="Panel" type="Panel" parent="." unique_id=1803541359]
+modulate = Color(0.741384, 0.74138486, 0.7413844, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_pih3d")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=880944636]
+layer = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2" unique_id=1371539549]
+z_index = 2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -121.0
+offset_top = -319.0
+offset_right = 121.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Start_button" type="Button" parent="CanvasLayer2/VBoxContainer" unique_id=254492010]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0.5510001, 0.87, 0.9019608)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_j51p1")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ce3w2")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_erv1k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1ehe0")
+text = "START"
+
+[node name="Exit_button" type="Button" parent="CanvasLayer2/VBoxContainer" unique_id=1962457044]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0.56078434, 0.8745098, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_j51p1")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_erv1k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ce3w2")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_erv1k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1ehe0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1ehe0")
+text = "EXIT"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1686021727]
+
+[node name="Main Menu Title" parent="CanvasLayer" unique_id=653418632 instance=ExtResource("4_pih3d")]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = -172.0
+offset_right = 474.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main Menu Music" type="AudioStreamPlayer2D" parent="." unique_id=1038369864]
+stream = ExtResource("5_j51p1")
+volume_db = 8.0
+
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/Start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/Exit_button" to="." method="_on_exit_button_pressed"]

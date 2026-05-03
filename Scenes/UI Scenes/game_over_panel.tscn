@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://djrijv6vcgs7h"]
+
+[ext_resource type="Script" uid="uid://dpqfkw0aa7b6t" path="res://Scripts/UI Scripts/game_over_panel.gd" id="1_15dc6"]
+[ext_resource type="FontFile" uid="uid://da70qx3j8wv0j" path="res://Fonts/m12_match_biker/m12.TTF" id="1_kjh2t"]
+[ext_resource type="FontFile" uid="uid://cqwkw5h5a2qp6" path="res://Fonts/Game Over Font/8-bit-pusab.ttf" id="2_m0hxa"]
+[ext_resource type="Script" uid="uid://yggwnku345en" path="res://Scenes/UI Scenes/restart_button.gd" id="3_m0hxa"]
+[ext_resource type="Script" uid="uid://dh35aqk51t6jv" path="res://Scenes/UI Scenes/quit_button.gd" id="4_xbkpx"]
+[ext_resource type="AudioStream" uid="uid://banhqae1u6lmh" path="res://Musics/Game Over Music.mp3" id="6_lpkhk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kh72o"]
+font = ExtResource("1_kjh2t")
+font_size = 90
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wqac2"]
+font = ExtResource("2_m0hxa")
+font_size = 20
+font_color = Color(1, 1, 0, 1)
+
+[node name="Control" type="Control" unique_id=1893514483]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_15dc6")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1900712639]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.029999971, 0.029999971, 0.43529412)
+
+[node name="Heading" type="Label" parent="." unique_id=2000324079]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -382.5
+offset_top = -281.0
+offset_right = 382.5
+offset_bottom = -191.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "game over"
+label_settings = SubResource("LabelSettings_kh72o")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2083504103]
+layout_mode = 0
+offset_left = 1419.0
+offset_top = 149.0
+offset_right = 1862.0
+offset_bottom = 584.0
+
+[node name="Para1" type="Label" parent="." unique_id=213769752]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.5
+offset_top = -154.0
+offset_right = 444.5
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU TOUCHED THE WORMHOLE AND NOW YOU’RE 
+STUCK IN A DIFFERENT TIMELINE :/"
+label_settings = SubResource("LabelSettings_wqac2")
+
+[node name="Para2" type="Label" parent="." unique_id=1730682932]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.5
+offset_top = -45.5
+offset_right = 444.5
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PRESS THE RESTART BUTTON TO TRY AGAIN!!
+"
+label_settings = SubResource("LabelSettings_wqac2")
+
+[node name="Restart_Button" type="Button" parent="." unique_id=20325510]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -444.0
+offset_top = -292.0
+offset_right = -109.0
+offset_bottom = -210.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.5205577, 0.98809224, 0.7239963, 1)
+theme_override_fonts/font = ExtResource("2_m0hxa")
+theme_override_font_sizes/font_size = 40
+action_mode = 0
+text = "RESTART"
+script = ExtResource("3_m0hxa")
+
+[node name="Quit_Button" type="Button" parent="." unique_id=477843418]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 119.0
+offset_top = -292.0
+offset_right = 454.0
+offset_bottom = -210.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.5205577, 0.98809224, 0.7239963, 1)
+theme_override_fonts/font = ExtResource("2_m0hxa")
+theme_override_font_sizes/font_size = 40
+action_mode = 0
+text = "QUIT"
+script = ExtResource("4_xbkpx")
+
+[node name="Game Over Music" type="AudioStreamPlayer2D" parent="." unique_id=1168286865]
+stream = ExtResource("6_lpkhk")
+volume_db = 8.0
+
+[connection signal="pressed" from="Restart_Button" to="Restart_Button" method="_on_pressed"]
+[connection signal="pressed" from="Quit_Button" to="Quit_Button" method="_on_pressed"]

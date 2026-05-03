@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://fd573gvbk0i6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl8km"]
+bg_color = Color(1.08259485e-07, 0.17062712, 0.1861742, 1)
+
+[node name="Level2 Start" type="Control" unique_id=1070799143]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=857828239]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nl8km")
+
+[node name="Label" type="Label" parent="." unique_id=2071971516]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

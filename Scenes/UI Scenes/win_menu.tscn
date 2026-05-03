@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://dw3k5boxm3tut"]
+
+[ext_resource type="Script" uid="uid://c6exoxc6v8u1b" path="res://Scripts/UI Scripts/win_menu.gd" id="1_66xf2"]
+[ext_resource type="FontFile" uid="uid://relnylvsx51p" path="res://Fonts/Win Menu Font/BubbleBobble-rg3rx.ttf" id="1_rg6l1"]
+[ext_resource type="FontFile" uid="uid://cqwkw5h5a2qp6" path="res://Fonts/Game Over Font/8-bit-pusab.ttf" id="2_xhigv"]
+[ext_resource type="AudioStream" uid="uid://bw7hvx3sevecl" path="res://Musics/Win Menu Music.mp3" id="4_u2ss5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xhigv"]
+font = ExtResource("1_rg6l1")
+font_size = 90
+font_color = Color(0, 0.74509805, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_66xf2"]
+font = ExtResource("1_rg6l1")
+font_size = 50
+font_color = Color(0.4862745, 0.12156863, 0.2784314, 1)
+
+[node name="Win Menu" type="Control" unique_id=238195313]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_66xf2")
+
+[node name="Panel" type="Panel" parent="." unique_id=1657774228]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=757634468]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -416.0
+offset_top = 127.0
+offset_right = 416.0
+offset_bottom = 238.0
+grow_horizontal = 2
+text = "YOU EXITED THE WORMHOLE :D"
+label_settings = SubResource("LabelSettings_xhigv")
+
+[node name="Label2" type="Label" parent="." unique_id=1350763384]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -483.5
+offset_top = -55.5
+offset_right = 483.5
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LEVEL 1 COMPLETED!!"
+label_settings = SubResource("LabelSettings_66xf2")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=775123902]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.5
+offset_top = 49.0
+offset_right = 167.5
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Restart_Button" type="Button" parent="VBoxContainer" unique_id=334585206]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5205577, 0.98809224, 0.7239963, 1)
+theme_override_fonts/font = ExtResource("2_xhigv")
+theme_override_font_sizes/font_size = 40
+action_mode = 0
+text = "CONTINUE"
+
+[node name="Win Menu Music" type="AudioStreamPlayer2D" parent="." unique_id=703722572]
+stream = ExtResource("4_u2ss5")
+volume_db = 8.0
+
+[connection signal="pressed" from="VBoxContainer/Restart_Button" to="." method="_on_restart_button_pressed"]

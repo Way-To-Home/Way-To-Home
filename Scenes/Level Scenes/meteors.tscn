@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://ccs5qi36tmp4x"]
+
+[ext_resource type="Script" uid="uid://8vidc7ayr4s2" path="res://Scripts/Game Scripts/meteors.gd" id="1_dvm4q"]
+[ext_resource type="Texture2D" uid="uid://bxj407437cng3" path="res://Meteors/meteorGrey_big4.png" id="2_7wg1m"]
+[ext_resource type="Shape2D" uid="uid://xwcaju84mt24" path="res://resources/meteor_cshape_big4.tres" id="3_7wg1m"]
+
+[sub_resource type="Gradient" id="Gradient_7wg1m"]
+offsets = PackedFloat32Array(0, 0.39473686, 0.6644737, 0.9802632, 1)
+colors = PackedColorArray(0.53424805, 0.075264566, 0.04066301, 1, 0.8901961, 0.7490196, 0.2901961, 1, 0.18141204, 0.14754492, 0.03659019, 1, 0.28, 0.28, 0.28, 1, 6.2268104e-05, 4.7597507e-05, 0.0007163538, 0.39999986)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1wvr6"]
+gradient = SubResource("Gradient_7wg1m")
+
+[sub_resource type="Curve" id="Curve_7wg1m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1460675), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1wvr6"]
+curve = SubResource("Curve_7wg1m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7wg1m"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_1wvr6")
+color_ramp = SubResource("GradientTexture1D_1wvr6")
+
+[node name="Meteors" type="Area2D" unique_id=353688168]
+z_index = -1
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_dvm4q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=896719588]
+texture = ExtResource("2_7wg1m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1281944515]
+position = Vector2(-1, 1)
+shape = ExtResource("3_7wg1m")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=790952808]
+
+[node name="Explosion" type="GPUParticles2D" parent="." unique_id=2124147354]
+emitting = false
+amount = 60
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7wg1m")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
