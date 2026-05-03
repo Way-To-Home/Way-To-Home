@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://71ujn5qlcadm" path="res://Sprites/level 2 background.jpg" id="1_n5pkn"]
 [ext_resource type="Script" uid="uid://djqxla6nyjqxx" path="res://Scripts/Game Scripts/meteor_spawner.gd" id="3_f6fat"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Sprites/icon.svg" id="4_btwsa"]
+[ext_resource type="PackedScene" uid="uid://gqluthuqtvmf" path="res://Scenes/Level Scenes/enemy.tscn" id="6_58reu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m1wfm"]
 size = Vector2(115, 672)
@@ -41,6 +42,9 @@ position = Vector2(0, -20)
 [node name="ShootCoolDown" type="Timer" parent="Player" unique_id=1267960120]
 wait_time = 0.2
 one_shot = true
+
+[node name="Enemy" parent="." unique_id=1732104642 instance=ExtResource("6_58reu")]
+position = Vector2(531, 138)
 
 [node name="MeteorSpawner" type="Node2D" parent="." unique_id=963704447]
 script = ExtResource("3_f6fat")
