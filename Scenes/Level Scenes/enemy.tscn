@@ -2,19 +2,25 @@
 
 [ext_resource type="Script" uid="uid://umbr6pyheob7" path="res://Scripts/Game Scripts/enemy.gd" id="1_3qfcn"]
 [ext_resource type="Texture2D" uid="uid://b16pk672nfqc" path="res://Sprites/enemyRed1.png" id="1_xaqj3"]
+[ext_resource type="PackedScene" path="C:/Users/sudip/Downloads/Learning Project/Way-To-Home/Scenes/Level Scenes/enemy_laser.tscn" id="2_0e06w"]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1989276778]
 script = ExtResource("1_3qfcn")
+bullet_scene = ExtResource("2_0e06w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1304774369]
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_xaqj3")
+flip_v = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2053891688]
-scale = Vector2(0.7, 0.7)
+scale = Vector2(-0.7, -0.7)
 polygon = PackedVector2Array(-13, 34, -22, 38, -43, -16, -28, -37, -15, -30, -13, -22, 10, -22, 12, -31, 28, -37, 43, -15, 24, 38, 14, 36, 22, 9, 14, 7, 11, 13, -10, 13, -16, 6, -20, 8)
 
-[node name="Timer" type="Timer" parent="." unique_id=712197482]
+[node name="ShootTimer" type="Timer" parent="." unique_id=712197482]
+wait_time = 0.2
 
 [node name="bullet_pos" type="Marker2D" parent="." unique_id=77741727]
-position = Vector2(0, 19)
+position = Vector2(0, -15)
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

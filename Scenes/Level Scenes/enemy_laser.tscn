@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c65oudtun7wx3"]
+
+[ext_resource type="Texture2D" uid="uid://bungchu4e6p2v" path="res://Lasers/laserRed01.png" id="1_ej68o"]
+[ext_resource type="Script" uid="uid://21fy7egbcdsf" path="res://Scripts/Game Scripts/enemy_laser.gd" id="1_tsm7o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsm7o"]
+radius = 4.0
+height = 46.0
+
+[node name="enemy_laser" type="Area2D" unique_id=813223798]
+script = ExtResource("1_tsm7o")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=747936801]
+position = Vector2(0, -27)
+texture = ExtResource("1_ej68o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1290786920]
+position = Vector2(0, -28)
+shape = SubResource("CapsuleShape2D_tsm7o")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=61274797]
+position = Vector2(0, 10)
+rect = Rect2(-2, -10, 4, 20)
