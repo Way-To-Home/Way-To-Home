@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var move_speed := 150.0
-@export var rotation_speed := 20.0
+@export var rotation_speed := 15.0
 @export var stop_distance := 80.0
 @export var follow_distance := 120.0
 @export var bullet_scene: PackedScene
@@ -64,10 +64,6 @@ func shoot() -> void:
 	# direction vector based on rotation
 	var dir = Vector2.UP.rotated(rotation).normalized()
 	bullet.set_direction(dir)
-
-	# optional: give bullet initial velocity if it supports it
-	if bullet.has_method("set_velocity"):
-		bullet.set_velocity(dir * 400) # adjust speed as needed
 
 
 func _on_shoot_timer_timeout() -> void:
