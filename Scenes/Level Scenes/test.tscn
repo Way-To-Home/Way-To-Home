@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d3x3rccg4py51"]
+
+[ext_resource type="Script" uid="uid://r31it5n8lppl" path="res://Scenes/Level Scenes/test.gd" id="1_p6amm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rcr0w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7npr"]
+
+[node name="Test" type="Node2D" unique_id=840585417]
+script = ExtResource("1_p6amm")
+
+[node name="Enemy" type="CharacterBody2D" parent="." unique_id=1712768942]
+unique_name_in_owner = true
+position = Vector2(229, 243)
+collision_layer = 16
+collision_mask = 21
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=985944131]
+shape = SubResource("CircleShape2D_rcr0w")
+
+[node name="Player" type="RigidBody2D" parent="." unique_id=57256907]
+unique_name_in_owner = true
+position = Vector2(228, 368)
+collision_layer = 2
+collision_mask = 21
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=904093265]
+shape = SubResource("CircleShape2D_m7npr")

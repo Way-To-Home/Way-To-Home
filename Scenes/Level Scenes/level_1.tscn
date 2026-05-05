@@ -2,12 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://c457r2yjw1fr4" path="res://Sprites/bacgrkound.png" id="1_3hls8"]
 [ext_resource type="Script" uid="uid://2agjdjxd42al" path="res://Scripts/Game Scripts/level_1.gd" id="1_ihfcg"]
-[ext_resource type="PackedScene" uid="uid://p3ifybcspv4k" path="res://Scenes/Level Scenes/player.tscn" id="2_hbghi"]
 [ext_resource type="FontFile" uid="uid://brir2jta8r0j4" path="res://Fonts/In-Game Font/04B_30__.TTF" id="2_idn0c"]
 [ext_resource type="PackedScene" uid="uid://3wu2pngeoobt" path="res://Scenes/Level Scenes/maze.tscn" id="4_ihfcg"]
 [ext_resource type="Shader" uid="uid://c7hodjvik4i4c" path="res://Scripts/Shaders/Fog_shader.gdshader" id="5_idn0c"]
 [ext_resource type="PackedScene" uid="uid://csg4ngjkvrcpq" path="res://Scenes/Level Scenes/win_area.tscn" id="7_jhu26"]
-[ext_resource type="AudioStream" uid="uid://cagkb35xrlgs3" path="res://Musics/Game Background Music.mp3" id="8_w04je"]
 [ext_resource type="FontFile" uid="uid://bvgvtlp6qj1c2" path="res://Fonts/Timer Font/SuperAdorable-MAvyp.ttf" id="9_7jdm3"]
 [ext_resource type="FontFile" uid="uid://bruifko8g2kpc" path="res://Fonts/End Guide Font/MotleyForcesRegular-w1rZ3.ttf" id="10_pc6fx"]
 
@@ -126,15 +124,6 @@ grow_vertical = 2
 [node name="Win Area" parent="." unique_id=34974328 instance=ExtResource("7_jhu26")]
 position = Vector2(6979, -5715)
 scale = Vector2(2, 2)
-
-[node name="Player" parent="." unique_id=2114854665 instance=ExtResource("2_hbghi")]
-position = Vector2(-542, -160)
-
-[node name="Game Background Music" type="AudioStreamPlayer2D" parent="Player" unique_id=120505371]
-position = Vector2(310, 107)
-stream = ExtResource("8_w04je")
-volume_db = 10.0
-autoplay = true
 
 [node name="Timer" type="Timer" parent="." unique_id=23366676]
 

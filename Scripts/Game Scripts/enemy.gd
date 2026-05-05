@@ -31,7 +31,6 @@ var can_shoot := true
 
 
 func _ready():
-
 	ray_center.add_exception(self)
 	ray_left.add_exception(self)
 	ray_right.add_exception(self)
@@ -48,11 +47,28 @@ func _physics_process(delta):
 
 	var target_velocity = Vector2.ZERO
 
-	if distance_to_player > (desired_distance + distance_tolerance):
-		target_velocity += direction * move_speed
+	# corner escape system
+	var escape_force = Vector2.ZERO
+	var is_cornered = false
 
-	elif distance_to_player < (desired_distance - distance_tolerance):
-		target_velocity -= direction * move_speed
+	var blockers = area_2d.get_overlapping_bodies().size()
+
+	if blockers >= 2:
+		is_cornered = true
+
+	if is_cornered:
+		var random_dir = Vector2(
+			randf_range(-1.0, 1.0),
+			randf_range(-1.0, 1.0)
+		).normalized()
+
+		escape_force = random_dir * move_speed * 2.5
+		target_velocity = escape_force
+	else:
+		if distance_to_player > (desired_distance + distance_tolerance):
+			target_velocity += direction * move_speed
+		elif distance_to_player < (desired_distance - distance_tolerance):
+			target_velocity -= direction * move_speed
 
 	var separation_force = Vector2.ZERO
 
@@ -95,7 +111,8 @@ func _physics_process(delta):
 	ray_left.force_raycast_update()
 	ray_right.force_raycast_update()
 
-	move_and_collide(velocity * delta)
+	# FIXED LINE ↓
+	move_and_slide()
 
 	handle_shooting()
 
