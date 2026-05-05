@@ -1,71 +1,144 @@
 extends CharacterBody2D
 
-@export var move_speed := 150.0
-@export var rotation_speed := 15.0
-@export var stop_distance := 80.0
-@export var follow_distance := 120.0
+@export var move_speed := 250.0
+@export var acceleration := 600.0
+@export var friction := 350.0
+
+@export var rotation_speed := 10.0
+
+# distance enemy tries to keep from player
+@export var desired_distance := 180.0
+@export var distance_tolerance := 30.0
+
+# spacing between enemies
+@export var separation_distance := 90.0
+@export var separation_strength := 10.0
+
 @export var bullet_scene: PackedScene
 
-@onready var player: RigidBody2D = $"../Player"
-@onready var shoot_timer: Timer = $ShootTimer
-@onready var muzzle: Marker2D = $bullet_pos
+@onready var player = $"../../Player"
 
-var can_follow := true
+@onready var shoot_timer = $ShootTimer
+@onready var muzzle = $bullet_pos
+@onready var area_2d = $Area2D
+
+# rays used to check if another enemy blocks shooting
+@onready var ray_center = $bullet_pos/RayCastCenter
+@onready var ray_left = $bullet_pos/RayCastLeft
+@onready var ray_right = $bullet_pos/RayCastRight
+
 var can_shoot := true
 
 
-func _physics_process(delta: float) -> void:
+func _ready():
+
+	ray_center.add_exception(self)
+	ray_left.add_exception(self)
+	ray_right.add_exception(self)
+
+
+func _physics_process(delta):
+
 	if player == null:
 		return
 
-	var distance_to_player = global_position.distance_to(player.global_position)
+	var to_player = player.global_position - global_position
+	var direction = to_player.normalized()
+	var distance_to_player = to_player.length()
 
-	# follow logic
-	if distance_to_player <= stop_distance:
-		can_follow = false
-	elif distance_to_player >= follow_distance:
-		can_follow = true
+	var target_velocity = Vector2.ZERO
 
-	var direction = (player.global_position - global_position).normalized()
+	if distance_to_player > (desired_distance + distance_tolerance):
+		target_velocity += direction * move_speed
 
-	# movement
-	if can_follow:
-		velocity = direction * move_speed
-	else:
-		velocity = Vector2.ZERO
+	elif distance_to_player < (desired_distance - distance_tolerance):
+		target_velocity -= direction * move_speed
 
-	# rotation always tracks player
-	var target_rotation = direction.angle() - deg_to_rad(90)
-	target_rotation += PI
+	var separation_force = Vector2.ZERO
+
+	for body in area_2d.get_overlapping_bodies():
+
+		if body == self:
+			continue
+
+		if body.is_in_group("enemies"):
+
+			var enemy_distance = global_position.distance_to(body.global_position)
+
+			if enemy_distance < separation_distance:
+
+				var push_direction = (global_position - body.global_position).normalized()
+
+				var push_strength = (separation_distance - enemy_distance) * separation_strength
+
+				separation_force += push_direction * push_strength
+
+	target_velocity += separation_force
+
+	velocity = velocity.move_toward(target_velocity, acceleration * delta)
+
+	if target_velocity == Vector2.ZERO:
+		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+
+	var target_rotation = direction.angle()
+	target_rotation += deg_to_rad(90)
+
 	rotation = lerp_angle(rotation, target_rotation, rotation_speed * delta)
 
-	move_and_slide()
+	var target_pos = to_local(player.global_position)
 
-	# shooting
-	if can_shoot:
+	ray_center.target_position = target_pos
+	ray_left.target_position = target_pos
+	ray_right.target_position = target_pos
+
+	ray_center.force_raycast_update()
+	ray_left.force_raycast_update()
+	ray_right.force_raycast_update()
+
+	move_and_collide(velocity * delta)
+
+	handle_shooting()
+
+
+func handle_shooting():
+
+	if can_shoot == false:
+		return
+
+	var blocked := false
+
+	var rays = [ray_center, ray_left, ray_right]
+
+	for ray in rays:
+
+		if ray.is_colliding():
+
+			var collider = ray.get_collider()
+
+			if collider != null and collider.is_in_group("enemies"):
+				blocked = true
+
+	if blocked == false:
+
 		shoot()
 		can_shoot = false
-		shoot_timer.start(randf_range(0.2, 1.0))
+		shoot_timer.start(randf_range(0.4, 1.0))
 
 
-func shoot() -> void:
+func shoot():
+
 	if bullet_scene == null:
 		return
 
 	var bullet = bullet_scene.instantiate()
 	get_parent().add_child(bullet)
 
-	# spawn position
 	bullet.global_position = muzzle.global_position
-
-	# align bullet rotation with enemy rotation
 	bullet.rotation = rotation
 
-	# direction vector based on rotation
-	var dir = Vector2.UP.rotated(rotation).normalized()
+	var dir = Vector2.UP.rotated(rotation)
 	bullet.set_direction(dir)
 
 
-func _on_shoot_timer_timeout() -> void:
+func _on_shoot_timer_timeout():
 	can_shoot = true
-	shoot_timer.stop()

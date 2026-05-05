@@ -33,7 +33,6 @@ stretch_mode = 1
 [node name="Player" parent="." unique_id=1619163447 instance=ExtResource("1_l2t6n")]
 z_index = 1
 position = Vector2(553, 281)
-collision_layer = 2
 collision_mask = 5
 
 [node name="Muzzle" type="Node2D" parent="Player" unique_id=1286509173]
@@ -42,18 +41,6 @@ position = Vector2(0, -20)
 [node name="ShootCoolDown" type="Timer" parent="Player" unique_id=1267960120]
 wait_time = 0.2
 one_shot = true
-
-[node name="Enemy" parent="." unique_id=1732104642 instance=ExtResource("6_58reu")]
-position = Vector2(497, -344)
-
-[node name="Enemy2" parent="." unique_id=1989276778 instance=ExtResource("6_58reu")]
-position = Vector2(456, -346)
-
-[node name="Enemy3" parent="." unique_id=1082880241 instance=ExtResource("6_58reu")]
-position = Vector2(852, -311)
-
-[node name="Enemy4" parent="." unique_id=918369789 instance=ExtResource("6_58reu")]
-position = Vector2(64, -378)
 
 [node name="MeteorSpawner" type="Node2D" parent="." unique_id=963704447]
 script = ExtResource("3_f6fat")
@@ -99,5 +86,13 @@ shape = SubResource("RectangleShape2D_58reu")
 [node name="Asteroids" type="Node" parent="." unique_id=2118910169]
 
 [node name="Lasers" type="Node" parent="." unique_id=821815588]
+
+[node name="Enemies" type="Node2D" parent="." unique_id=420980883]
+
+[node name="Enemy" parent="Enemies" unique_id=1989276778 instance=ExtResource("6_58reu")]
+position = Vector2(136, 221)
+
+[node name="Enemy2" parent="Enemies" unique_id=1169092226 instance=ExtResource("6_58reu")]
+position = Vector2(377, 239)
 
 [editable path="Player"]

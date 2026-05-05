@@ -2,9 +2,16 @@
 
 [ext_resource type="Script" uid="uid://umbr6pyheob7" path="res://Scripts/Game Scripts/enemy.gd" id="1_3qfcn"]
 [ext_resource type="Texture2D" uid="uid://b16pk672nfqc" path="res://Sprites/enemyRed1.png" id="1_xaqj3"]
-[ext_resource type="PackedScene" path="C:/Users/sudip/Downloads/Learning Project/Way-To-Home/Scenes/Level Scenes/enemy_laser.tscn" id="2_0e06w"]
+[ext_resource type="PackedScene" uid="uid://c65oudtun7wx3" path="res://Scenes/Level Scenes/enemy_laser.tscn" id="2_0e06w"]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1989276778]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0e06w"]
+radius = 100.0
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1869561657 groups=["enemies"]]
+collision_layer = 16
+collision_mask = 21
+motion_mode = 1
+safe_margin = 0.001
 script = ExtResource("1_3qfcn")
 bullet_scene = ExtResource("2_0e06w")
 
@@ -14,13 +21,36 @@ texture = ExtResource("1_xaqj3")
 flip_v = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2053891688]
-scale = Vector2(-0.7, -0.7)
-polygon = PackedVector2Array(-13, 34, -22, 38, -43, -16, -28, -37, -15, -30, -13, -22, 10, -22, 12, -31, 28, -37, 43, -15, 24, 38, 14, 36, 22, 9, 14, 7, 11, 13, -10, 13, -16, 6, -20, 8)
+rotation = -3.1415927
+scale = Vector2(0.7, 0.7)
+polygon = PackedVector2Array(24.28571, 40, 12.85714, 37.142857, -11.428574, 37.142857, -22.857145, 39.999992, -44.285713, -15.714289, -28.571423, -40, -11.428568, -32.85714, 11.428574, -32.85714, 27.142859, -39.999992, 44.285713, -15.714281)
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=712197482]
 wait_time = 0.2
 
 [node name="bullet_pos" type="Marker2D" parent="." unique_id=77741727]
 position = Vector2(0, -15)
+
+[node name="RayCastCenter" type="RayCast2D" parent="bullet_pos" unique_id=2131043758]
+position = Vector2(0, 15)
+target_position = Vector2(0, -1000)
+collision_mask = 18
+
+[node name="RayCastLeft" type="RayCast2D" parent="bullet_pos" unique_id=431705331]
+position = Vector2(0, 15)
+target_position = Vector2(-40, -1000)
+collision_mask = 18
+
+[node name="RayCastRight" type="RayCast2D" parent="bullet_pos" unique_id=1100991563]
+position = Vector2(0, 15)
+target_position = Vector2(40, -1000)
+collision_mask = 18
+
+[node name="Area2D" type="Area2D" parent="." unique_id=166446824]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=233669907]
+shape = SubResource("CircleShape2D_0e06w")
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

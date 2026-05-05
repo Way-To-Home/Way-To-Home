@@ -8,7 +8,7 @@ radius = 3.0
 
 [node name="laser" type="Area2D" unique_id=874875241]
 collision_layer = 8
-collision_mask = 4
+collision_mask = 20
 script = ExtResource("1_3u28q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1928580154]

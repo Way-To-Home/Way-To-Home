@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Way-To-Home"
-run/main_scene="uid://dw3k5boxm3tut"
+run/main_scene="uid://dvpmrbk4lb3w4"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://Sprites/icon.svg"
@@ -24,6 +24,10 @@ config/icon="res://Sprites/icon.svg"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[global_group]
+
+enemies=""
 
 [input]
 
@@ -68,6 +72,7 @@ reset={
 2d_physics/layer_2="player"
 2d_physics/layer_3="asteriods"
 2d_physics/layer_4="projectiles"
+2d_physics/layer_5="enemies"
 
 [rendering]
 

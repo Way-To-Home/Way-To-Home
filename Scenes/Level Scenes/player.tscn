@@ -6,9 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
 radius = 12.0415945
 
-[node name="Player" type="RigidBody2D" unique_id=1619163447]
-disable_mode = 2
-gravity_scale = 0.0
+[node name="Player" type="RigidBody2D" unique_id=1267836727]
+collision_layer = 2
+collision_mask = 21
 script = ExtResource("1_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1970691668]
