@@ -90,9 +90,21 @@ shape = SubResource("RectangleShape2D_58reu")
 [node name="Enemies" type="Node2D" parent="." unique_id=420980883]
 
 [node name="Enemy" parent="Enemies" unique_id=1989276778 instance=ExtResource("6_58reu")]
-position = Vector2(136, 221)
+position = Vector2(142, 459)
+
+[node name="Enemy3" parent="Enemies" unique_id=1869561657 instance=ExtResource("6_58reu")]
+position = Vector2(853, 472)
+
+[node name="Enemy4" parent="Enemies" unique_id=2099142994 instance=ExtResource("6_58reu")]
+position = Vector2(470, 113)
+
+[node name="Enemy5" parent="Enemies" unique_id=2024503959 instance=ExtResource("6_58reu")]
+position = Vector2(145, 110)
+
+[node name="Enemy6" parent="Enemies" unique_id=754039566 instance=ExtResource("6_58reu")]
+position = Vector2(300, 279)
 
 [node name="Enemy2" parent="Enemies" unique_id=1169092226 instance=ExtResource("6_58reu")]
-position = Vector2(377, 239)
+position = Vector2(916, 143)
 
 [editable path="Player"]
