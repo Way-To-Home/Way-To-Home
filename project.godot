@@ -28,7 +28,6 @@ window/stretch/aspect="expand"
 [global_group]
 
 enemies=""
-player=""
 
 [input]
 

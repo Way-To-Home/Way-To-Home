@@ -30,10 +30,9 @@ texture = ExtResource("1_n5pkn")
 expand_mode = 2
 stretch_mode = 1
 
-[node name="Player" parent="." unique_id=1619163447 groups=["player"] instance=ExtResource("1_l2t6n")]
+[node name="Player" parent="." unique_id=1619163447 instance=ExtResource("1_l2t6n")]
 z_index = 1
 position = Vector2(553, 281)
-collision_mask = 5
 
 [node name="Muzzle" type="Node2D" parent="Player" unique_id=1286509173]
 position = Vector2(0, -20)
