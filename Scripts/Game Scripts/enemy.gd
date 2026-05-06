@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-@export var move_speed := 250.0
+@export var move_speed := 0.0
 @export var acceleration := 600.0
 @export var friction := 350.0
 
-@export var rotation_speed := 30.0
+@export var rotation_speed := 0.0
 
 # distance enemy tries to keep from player
 @export var desired_distance := 180.0
